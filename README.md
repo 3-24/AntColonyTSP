@@ -1,6 +1,6 @@
 # AcoTsp
 
-![Pheromone Graph](https://imgur.com/naX7AIv)
+![Pheromone Graph](https://imgur.com/naX7AIv.gif)
 
 Traveling Salesman Problem solver with Ant Colony Optimisation.
 
