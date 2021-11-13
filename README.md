@@ -1,5 +1,7 @@
 # AcoTsp
 
+![Pheromone Graph](https://imgur.com/naX7AIv)
+
 Traveling Salesman Problem solver with Ant Colony Optimisation.
 
 ## TSP Problem
