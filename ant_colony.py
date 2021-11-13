@@ -17,7 +17,10 @@ class Ant:
         node_at = self.tour[self.tour_it-1]
         weights = np.nan_to_num(np.reshape(pheromoneGraph.pheromone_weight[node_at, :], self.dim), copy=False, nan=10000) * self.not_visited
         weights = weights / weights.sum()
-        node_next = np.random.choice(self.dim, p=weights)
+        try:
+            node_next = np.random.choice(self.dim, p=weights)
+        except ValueError:
+            node_next = np.random.choice(self.dim, p=self.not_visited / self.not_visited.sum())
         self.tour[self.tour_it] = node_next
         self.tour_it += 1
         self.not_visited[node_next] = 0
