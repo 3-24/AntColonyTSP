@@ -21,7 +21,7 @@ if __name__ == "__main__":
     while True:
         pop_size = random.randrange(problem.dim) + 1
         alpha = random.uniform(0, 1000)
-        beta = random.uniform(0, 1000)
+        beta = random.uniform(0, 250)
         rate = random.uniform(0, 1)
 
         _, new_cost = ACO(problem, pop_size, alpha, beta, rate, problem.dim*100)
