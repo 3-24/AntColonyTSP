@@ -1,20 +1,26 @@
-# Ant Colony Optimisation on Traveling Salesman Problem
+# AcoTsp
 
-Install the Python dependencies through
+Traveling Salesman Problem solver with Ant Colony Optimisation.
+
+## TSP Problem
+
+The problem file format is same as [TSPLIB](http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsplib.html).
+
+## Usage
+
+Clone this repository and install the Python dependencies through:
 
 ```sh
 pip3 install -r requirements.txt
 ```
 
-berfore running `tsp_solver.py`.
+With prepared problem.tsp file from TSPLIB, run:
 
-## Directory Structure
-Everything is Python 3.9 based.
-- `tsp_solver.py` - To run the evaluation, run `python3 tsp_solver.py (problem.tsp)`
-- `tsp_parser.py` - tsp problem file parser
-- `random_search.py` - random search for hyperparameter optimisation
-- `ant_colony.py` - core implementation of ant colony optimisation
+```
+python3 tsp_solver.py {problem.tsp}
+```
 
+It prints the cost and the tour is saved as `solution.csv` file.
 
 ## Advanced Usages
 
