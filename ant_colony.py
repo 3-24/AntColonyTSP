@@ -104,16 +104,14 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
     
     colony = [Ant(start, problem.dim) for start in np.random.choice(problem.dim, population_size, replace=True)]
     best_solution_cost = float('inf')
-    finish = False
     for fitness_count in range(0, fitness_limit, population_size):
+        best_updated = False
         with np.errstate(all = "raise"):
             try:
                 pheromoneGraph.update_total_weight()
             except FloatingPointError:
                 return [], -1
-        if (plot):
-            if (fitness_count % (population_size*100) == 0):
-                pheromoneGraph.plot_pheromone(problem, fitness_count // (population_size*100) )
+                
         for _ in range(problem.dim-1):
             for ant in colony:
                 ant.move(pheromoneGraph)
@@ -125,6 +123,7 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
             if (ant.cost < best_solution_cost):
                 best_solution = ant.tour.copy()
                 best_solution_cost = ant.cost
+                best_updated = True
             
             q = best_solution_cost / ant.cost
             
@@ -138,9 +137,9 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
         
         colony = [Ant(start, problem.dim) for start in np.random.choice(problem.dim, population_size, replace=True)]
         
-        if plot:
-            if (fitness_count % (population_size*100) == 0):
-                Tour(best_solution).plot_tour(problem, fitness_count // (population_size*100) )
+        if (plot and best_updated):
+            Tour(best_solution).plot_tour(problem, fitness_count)
+            pheromoneGraph.plot_pheromone(problem, fitness_count)
         if debug:
             #print(best_solution_cost)
             print(f"Best cost: {best_solution_cost} ({fitness_count}/{fitness_limit})")
