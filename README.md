@@ -1,4 +1,4 @@
-# AcoTsp
+# AntColonyTSP
 
 <div float="left" align="center">
     <img src="https://imgur.com/9bv0ZOa.gif" alt="Updating Pheromone" width="45%"/>
