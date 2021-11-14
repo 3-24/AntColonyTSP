@@ -77,7 +77,7 @@ class PheromoneGraph:
 
     def update_total_weight(self):
         with np.errstate(divide='ignore'):
-            self.pheromone_weight = np.divide(np.power(self._pheromone, self.a), self._precalc)
+            self.pheromone_weight = np.divide(np.power(self._pheromone+1, self.a), self._precalc)
 
     def add_pheromone(self, x, y, amount):
         self._pheromone[x, y] += amount
