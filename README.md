@@ -3,7 +3,7 @@
 <div float="left" align="center">
     <img src="https://imgur.com/9bv0ZOa.gif" alt="Updating Pheromone" width="40%"/>
     <img src="https://imgur.com/MRQ26XV.gif" alt="Updating Tour" width="40%"/>
-    <p>Pheromone Graph (left) and Tour (right) as time advanced on <a href="http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/berlin52.tsp">berlin52</a></p>
+    <p>Pheromone Graph (left) and Tour (right) on <a href="http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/berlin52.tsp">berlin52</a> as time advanced</p>
 </div>
 
 **Traveling Salesman Problem solver with Ant Colony Optimisation**
