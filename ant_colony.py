@@ -72,7 +72,6 @@ class PheromoneGraph:
         self.a = a
         self.b = b
         self.evap_rate = evap_rate
-        self.update_total_weight()
     
 
     def update_total_weight(self):
@@ -99,12 +98,19 @@ class PheromoneGraph:
 
 def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=False, plot=False):
     pheromoneGraph = PheromoneGraph(problem, a, b, evaporation_rate)
+    
     if (debug):
         print("Pheromone graph is initialized.")
-    colony = [Ant(start, problem.dim) for start in random.sample(range(problem.dim), population_size)]
+    
+    colony = [Ant(start, problem.dim) for start in np.random.choice(problem.dim, population_size, replace=True)]
     best_solution_cost = float('inf')
     finish = False
     for fitness_count in range(0, fitness_limit, population_size):
+        with np.errstate(all = "raise"):
+            try:
+                pheromoneGraph.update_total_weight()
+            except FloatingPointError:
+                return [], -1
         if (plot):
             if (fitness_count % (population_size*100) == 0):
                 pheromoneGraph.plot_pheromone(problem, fitness_count // (population_size*100) )
@@ -130,7 +136,7 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
                 pheromoneGraph.add_pheromone(p, n, q)
             pheromoneGraph.add_pheromone(ant.tour[0], p, q)
         
-        colony = [Ant(start, problem.dim) for start in random.sample(range(problem.dim), population_size)]
+        colony = [Ant(start, problem.dim) for start in np.random.choice(problem.dim, population_size, replace=True)]
         
         if plot:
             if (fitness_count % (population_size*100) == 0):
