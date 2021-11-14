@@ -16,21 +16,23 @@ if __name__ == "__main__":
     call_args = parser.parse_args()
     problem = Problem.from_file(call_args.tsp_file)
     best_cost = sys.maxsize
-    best = []
 
     while True:
-        pop_size = random.randrange(problem.dim) + 1
-        alpha = random.uniform(0, 300)
-        beta = random.uniform(0, 300)
+        pop_size = random.randrange(1000)+1
+        alpha = 1
+        beta = 2
         rate = random.uniform(0, 1)
+        new_hyps = (pop_size, alpha, beta, rate)
+        output = ACO(problem, *new_hyps, problem.dim*1000)
 
-        _, new_cost = ACO(problem, pop_size, alpha, beta, rate, problem.dim*100)
+        print(f"Challenger: {new_hyps}, {output.cost}")
 
-        print(f"Challenger: {(pop_size, alpha, beta, rate)}, {new_cost}")
-        if (best_cost > new_cost):
-            best = [(pop_size, alpha, beta, rate)]
-            best_cost = new_cost
+        if (best_cost > output.cost):
+            best = new_hyps
+            best_cost = output.cost
+            best_fitness_count = otuput.fitness_count
         elif (best_cost == new_cost):
-            best.append((pop_size, alpha, beta, rate))
+            if (best_fitness_count > output.fitness_count):
+                best = new_hyps
         
         print(f"{best} are best with cost {best_cost}")

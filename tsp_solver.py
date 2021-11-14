@@ -14,15 +14,15 @@ if __name__ == "__main__":
     problem = Problem.from_file(tsp_file)
 
     if (population_size == -1):
-        population_size = 400
+        population_size = 300
 
     if (fitness_limit == -1):
-        fitness_limit = problem.dim * 500
+        fitness_limit = problem.dim * 2000
 
-    tour, cost = ACO(problem, population_size, 1, 2, 0.2, fitness_limit, debug=call_args.debug, plot=call_args.plot)
+    output = ACO(problem, population_size, 1, 2, 0.2, fitness_limit, debug=call_args.debug, plot=call_args.plot)
     with open('solution.csv', 'w') as f:
-        f.write('\n'.join(map(lambda x: str(x+1), tour)))   # Use 1-based index for solution
-    print(cost)
+        f.write('\n'.join(map(lambda x: str(x+1), output.tour)))   # Use 1-based index for solution
+    print(output.cost)
     
 
 

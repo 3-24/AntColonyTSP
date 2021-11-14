@@ -2,6 +2,7 @@ import random
 import numpy as np
 from tsp_parser import Problem
 import matplotlib.pyplot as plt
+from collections import namedtuple
 
 class Ant:
     def __init__(self, start_node, dim):
@@ -95,6 +96,8 @@ class PheromoneGraph:
         plt.savefig(f'./outputs/pheromone_{index}.png')
         plt.clf()
 
+TspSolverOutput = namedtuple("TspSolverOutput", ["tour", "cost","fitness_count"])
+
 
 def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=False, plot=False):
     pheromoneGraph = PheromoneGraph(problem, a, b, evaporation_rate)
@@ -110,7 +113,7 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
             try:
                 pheromoneGraph.update_total_weight()
             except FloatingPointError:
-                return [], -1
+                return TspSolverOutput([], -1, -1)
                 
         for _ in range(problem.dim-1):
             for ant in colony:
@@ -119,10 +122,11 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
         # update pheromone
         pheromoneGraph.evaporate()
 
-        for ant in colony:
+        for i, ant in enumerate(colony):
             if (ant.cost < best_solution_cost):
                 best_solution = ant.tour.copy()
                 best_solution_cost = ant.cost
+                best_fitness_count = fitness_count + i
                 best_updated = True
             
             q = best_solution_cost / ant.cost
@@ -144,4 +148,4 @@ def ACO(problem, population_size, a, b, evaporation_rate, fitness_limit, debug=F
             #print(best_solution_cost)
             print(f"Best cost: {best_solution_cost} ({fitness_count}/{fitness_limit})")
     
-    return best_solution, best_solution_cost
+    return TspSolverOutput(best_solution, best_solution_cost, best_fitness_count)
