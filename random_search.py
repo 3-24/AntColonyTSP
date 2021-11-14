@@ -18,21 +18,22 @@ if __name__ == "__main__":
     best_cost = sys.maxsize
 
     while True:
-        pop_size = random.randrange(1000)+1
+        pop_size = random.randrange(problem.dim * 10)+1
         alpha = 1
         beta = 2
-        rate = random.uniform(0, 1)
+        rate = random.uniform(0, 0.8)
         new_hyps = (pop_size, alpha, beta, rate)
-        output = ACO(problem, *new_hyps, problem.dim*1000)
+        output = ACO(problem, *new_hyps, problem.dim*300)
 
-        print(f"Challenger: {new_hyps}, {output.cost}")
+        print(f"Challenger: {new_hyps}, {output.cost, output.fitness_count}")
 
         if (best_cost > output.cost):
             best = new_hyps
             best_cost = output.cost
-            best_fitness_count = otuput.fitness_count
-        elif (best_cost == new_cost):
+            best_fitness_count = output.fitness_count
+        elif (best_cost == output.cost):
             if (best_fitness_count > output.fitness_count):
                 best = new_hyps
+                best_fitness_count = output.fitness_count
         
-        print(f"{best} are best with cost {best_cost}")
+        print(f"{best} are best with cost {best_cost} and fitness count {best_fitness_count}")
