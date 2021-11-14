@@ -1,8 +1,12 @@
 # AcoTsp
 
-![Pheromone Graph](https://imgur.com/naX7AIv.gif)
+<div float="left" align="center">
+    <img src="https://imgur.com/obQdRU1.gif" alt="Updating Pheromone" width="40%"/>
+    <img src="https://imgur.com/yd3CtP2.gif" alt="Updating Tour" width="40%"/>
+  <p>pheromone graph (left) and tour (right) as time goes</p>
+</div>
 
-Traveling Salesman Problem solver with Ant Colony Optimisation.
+**Traveling Salesman Problem solver with Ant Colony Optimisation**
 
 ## TSP Problem
 
