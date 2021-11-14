@@ -1,8 +1,8 @@
 # AcoTsp
 
 <div float="left" align="center">
-    <img src="https://imgur.com/obQdRU1.gif" alt="Updating Pheromone" width="40%"/>
-    <img src="https://imgur.com/yd3CtP2.gif" alt="Updating Tour" width="40%"/>
+    <img src="https://imgur.com/9bv0ZOa.gif" alt="Updating Pheromone" width="40%"/>
+    <img src="https://imgur.com/MRQ26XV.gif" alt="Updating Tour" width="40%"/>
   <p>Pheromone Graph (left) and Tour (right) as time advanced</p>
 </div>
 
