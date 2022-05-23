@@ -1,8 +1,8 @@
 # AntColonyTSP
 
 <div float="left" align="center">
-    <img src="https://imgur.com/9bv0ZOa.gif" alt="Updating Pheromone" width="45%"/>
-    <img src="https://imgur.com/MRQ26XV.gif" alt="Updating Tour" width="45%"/>
+    <img src="https://imgur.com/9bv0ZOa.gif" alt="Updating Pheromone" width="35%"/>
+    <img src="https://imgur.com/MRQ26XV.gif" alt="Updating Tour" width="35%"/>
     <p>Pheromone Graph (left) and Tour (right) on <a href="http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/berlin52.tsp">berlin52</a> as time advanced</p>
 </div>
 
